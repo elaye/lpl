@@ -23,6 +23,7 @@ function LocationPicker({ onPickLocation }) {
         <Geosuggest
             placeholder={"Entrez une adresse"}
             onSuggestSelect={suggest => onPickLocation(suggest.placeId, suggest.label)}
+            onChange={() => onPickLocation(null)}
             bounds={lyonBounds}
         />
     );
