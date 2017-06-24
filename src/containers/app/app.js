@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import {
@@ -13,6 +12,7 @@ import './app.css';
 import { PropTypes } from 'prop-types';
 
 import DatePicker from '../../components/date-picker/date-picker';
+import InstructorPicker from '../../components/instructor-picker/instructor-picker';
 
 function renderStep1(availableDates, selectedDate, pickDate) {
     return (
@@ -27,36 +27,16 @@ function renderStep1(availableDates, selectedDate, pickDate) {
     );
 }
 
-function renderInstructor(instructor, selectedInstructor, pickInstructor) {
-    const className = classnames('app__instructor', {
-        'app__instructor--selected': selectedInstructor === instructor
-    });
-    return (
-        <button
-            className={className}
-            onClick={() => pickInstructor(instructor)}
-            key={instructor}
-        >
-            {instructor}
-        </button>
-    );
-}
-
 function renderStep2(availableInstructors, selectedInstructor, pickInstructor) {
     if (!availableInstructors) return null;
-    const noInstructor = <p>{"Pas de moniteur disponible à cette date"}</p>;
-    const instructors = (
-        <div className="app__instructors">
-            {availableInstructors.map(instructor =>
-                renderInstructor(instructor, selectedInstructor, pickInstructor)
-            )}
-        </div>
-    );
-    const els = availableInstructors.length !== 0 ? instructors : noInstructor;
     return (
             <div className="app__step">
             <h1>{"Etape 2: Choisissez un moniteur"}</h1>
-                {els}
+            <InstructorPicker
+                availableInstructors={availableInstructors}
+                selectedInstructor={selectedInstructor}
+                onPickInstructor={pickInstructor}
+            />
             </div>
     );
 }
@@ -68,7 +48,7 @@ class App extends Component {
       return (
         <div className="app">
             {renderStep1(availableDates, selectedDate, pickDate)}
-          {renderStep2(availableInstructors, selectedInstructor, pickInstructor)}
+            {renderStep2(availableInstructors, selectedInstructor, pickInstructor)}
         </div>);
   }
 }

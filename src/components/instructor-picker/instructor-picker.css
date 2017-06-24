@@ -1,0 +1,14 @@
+.instructor-picker__instructors {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.instructor-picker__instructor {
+    margin: 10px 0;
+}
+
+.instructor-picker__instructor--selected {
+    background-color: #1d5d90;
+    color: white;
+}
