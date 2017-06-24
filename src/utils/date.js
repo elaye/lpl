@@ -4,6 +4,5 @@ function pad(n) {
 
 export function today() {
     const date = new Date();
-    console.log(date);
     return `${pad(date.getDate())}/${pad(date.getMonth())}/${date.getFullYear()}`;
 }

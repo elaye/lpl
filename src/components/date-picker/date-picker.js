@@ -5,32 +5,12 @@ import { default as ReactDatePicker } from 'react-datepicker';
 import './date-picker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-class CustomInput extends Component {
-    render() {
-        const { onClick, value } = this.props;
-        return (
-            <button
-                className="date-picker__custom-input"
-                onClick={onClick}
-            >
-                {value}
-            </button>
-        );
-    }
-}
-
-CustomInput.propTypes = {
-    onClick: PropTypes.func,
-    value: PropTypes.string
-};
-
-function DatePicker({ date, onDateChange }) {
-    console.log(date);
+function DatePicker({ selectedDate, availableDates, onDateChange }) {
     return (
         <ReactDatePicker
             inline
-            customInput={<CustomInput />}
-            selected={date}
+            includeDates={availableDates}
+            selected={selectedDate}
             onChange={onDateChange}
             dateFormat="DD/MM/YYYY"
         />
@@ -39,8 +19,13 @@ function DatePicker({ date, onDateChange }) {
 }
 
 DatePicker.propTypes = {
-    date: PropTypes.object.isRequired,
+    selectedDate: PropTypes.object,
+    availableDates: PropTypes.array.isRequired,
     onDateChange: PropTypes.func.isRequired
+};
+
+DatePicker.defaultProps = {
+    selectedDate: null
 };
 
 export default DatePicker;

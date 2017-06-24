@@ -7,5 +7,19 @@
 
 .app__step {
     width: 80%;
-    margin: 50px 0;
+}
+
+.app__instructors {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.app__instructor {
+    margin: 10px 0;
+}
+
+.app__instructor--selected {
+    background-color: #1d5d90;
+    color: white;
 }
