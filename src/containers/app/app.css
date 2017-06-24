@@ -8,3 +8,9 @@
 .app__step {
     width: 80%;
 }
+
+.app__step-date {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}

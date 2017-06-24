@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import moment from 'moment';
 import {
     availableDates,
     availableInstructorsByDate
@@ -8,6 +7,7 @@ import {
 const selectApp = state => state.get('app');
 
 const selectSelectedDate = createSelector(selectApp, app => app.get('selectedDate'));
+const selectSelectedTime = createSelector(selectApp, app => app.get('selectedTime'));
 const selectSelectedInstructor = createSelector(selectApp, app => app.get('selectedInstructor'));
 const selectSelectedLocation = createSelector(selectApp, app => app.get('selectedLocation'));
 const selectReserved = createSelector(selectApp, app => app.get('reserved'));
@@ -23,6 +23,7 @@ const selectAvailableInstructorsByDate = createSelector(selectSelectedDate, sele
 export {
     selectAvailableDates,
     selectSelectedDate,
+    selectSelectedTime,
     selectSelectedInstructor,
     selectAvailableInstructorsByDate,
     selectSelectedLocation,
