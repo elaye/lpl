@@ -2,7 +2,6 @@ import { fromJS } from 'immutable';
 import { DATE_PICK, INSTRUCTOR_PICK } from './constants';
 
 const initialState = fromJS({
-    // TODO: fetch first available day for a lesson
     selectedDate: null,
     selectedInstructor: null
 });
