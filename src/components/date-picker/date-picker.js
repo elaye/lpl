@@ -5,13 +5,13 @@ import { default as ReactDatePicker } from 'react-datepicker';
 import './date-picker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function DatePicker({ selectedDate, availableDates, onDateChange }) {
+function DatePicker({ selectedDate, availableDates, onPickDate }) {
     return (
         <ReactDatePicker
             inline
             includeDates={availableDates}
             selected={selectedDate}
-            onChange={onDateChange}
+            onChange={onPickDate}
             dateFormat="DD/MM/YYYY"
         />
     );
@@ -21,7 +21,7 @@ function DatePicker({ selectedDate, availableDates, onDateChange }) {
 DatePicker.propTypes = {
     selectedDate: PropTypes.object,
     availableDates: PropTypes.array.isRequired,
-    onDateChange: PropTypes.func.isRequired
+    onPickDate: PropTypes.func.isRequired
 };
 
 DatePicker.defaultProps = {

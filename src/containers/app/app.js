@@ -21,7 +21,7 @@ function renderStep1(availableDates, selectedDate, pickDate) {
             <DatePicker
                 selectedDate={selectedDate}
                 availableDates={availableDates}
-                onDateChange={pickDate}
+                onPickDate={pickDate}
             />
         </div>
     );
