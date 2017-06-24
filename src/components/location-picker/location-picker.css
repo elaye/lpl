@@ -1,0 +1,8 @@
+.geosuggest__suggests--hidden {
+    display: none;
+}
+
+.geosuggest__item:hover {
+    background-color: #1d5d90;
+    color: white;
+}

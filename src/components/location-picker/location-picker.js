@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import Geosuggest from 'react-geosuggest';
 
+import './location-picker.css';
+
 const lyonBounds = (function() {
     // Lyon
     const center = new google.maps.LatLng(45.7640, 4.8357);
@@ -16,23 +18,18 @@ const lyonBounds = (function() {
 //     return !lyonBounds.contains(suggest.location);
 // }
 
-function LocationPicker({ selectedLocation, onPickLocation }) {
+function LocationPicker({ onPickLocation }) {
     return (
         <Geosuggest
             placeholder={"Entrez une adresse"}
-            onSuggestSelect={suggest => onPickLocation(suggest.placeId)}
+            onSuggestSelect={suggest => onPickLocation(suggest.placeId, suggest.label)}
             bounds={lyonBounds}
         />
     );
 }
 
 LocationPicker.propTypes = {
-    selectedLocation: PropTypes.string,
     onPickLocation: PropTypes.func.isRequired
-};
-
-LocationPicker.defaultProps = {
-    selectedLocation: null
 };
 
 export default LocationPicker;
