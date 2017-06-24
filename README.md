@@ -1,6 +1,6 @@
 [Demo](https://elaye.github.io/lpl/)
 
-[REST API spec](swagger.json) à importer avec [Swagger Editor](http://editor.swagger.io/)
+[REST API spec](https://raw.githubusercontent.com/elaye/lpl/develop/swagger.json) à importer avec [Swagger Editor](http://editor.swagger.io/)
 
 ## DB Schema
 
