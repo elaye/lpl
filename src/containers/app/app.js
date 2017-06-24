@@ -6,9 +6,10 @@ import {
     selectSelectedInstructor,
     selectSelectedLocation,
     selectAvailableDates,
-    selectAvailableInstructorsByDate
+    selectAvailableInstructorsByDate,
+    selectReserved
 } from './selectors';
-import { pickDate, pickInstructor, pickLocation } from './actions';
+import { pickDate, pickInstructor, pickLocation, reserve } from './actions';
 import './app.css';
 import { PropTypes } from 'prop-types';
 
@@ -55,6 +56,24 @@ function renderStep3(selectedLocation, pickLocation) {
     );
 }
 
+function renderSubmit(submit, reserved, selectedDate, selectedInstructor, selectedLocation) {
+    if (!reserved && (!selectedDate || !selectedInstructor || !selectedLocation)) return null;
+    return <button onClick={submit}>{"Réserver"}</button>;
+}
+
+function renderSuccess(selectedDate, selectedInstructor) {
+    return (
+        <div>
+            <h1>{"Merci de votre réservation!"}</h1>
+            <ul>
+                <li>{`Date : ${selectedDate.format('DD/MM/YYYY')}`}</li>
+                <li>{`Heure : ${selectedDate.format('DD/MM/YYYY')}`}</li>
+                <li>{`Moniteur : ${selectedInstructor}`}</li>
+            </ul>
+        </div>
+    );
+}
+
 class App extends Component {
 
   render() {
@@ -66,14 +85,19 @@ class App extends Component {
           availableInstructors,
           pickInstructor,
           selectedLocation,
-          pickLocation
+          pickLocation,
+          reserve,
+          reserved
       } = this.props;
+      console.log(reserved);
+      if (reserved) return renderSuccess(selectedDate, selectedInstructor);
       return (
         <div className="app">
               <h1>{"Réserver une heure de conduite"}</h1>
             {renderStep1(availableDates, selectedDate, pickDate)}
             {renderStep2(availableInstructors, selectedInstructor, pickInstructor)}
             {selectedInstructor ? renderStep3(selectedLocation, pickLocation) : null}
+            {renderSubmit(reserve, reserved, selectedDate, selectedInstructor, selectedLocation)}
         </div>);
   }
 }
@@ -86,7 +110,9 @@ App.propTypes = {
     availableInstructors: PropTypes.object,
     pickDate: PropTypes.func.isRequired,
     pickInstructor: PropTypes.func.isRequired,
-    pickLocation: PropTypes.func.isRequired
+    pickLocation: PropTypes.func.isRequired,
+    reserved: PropTypes.bool.isRequired,
+    reserve: PropTypes.func.isRequired
 };
 
 App.defaultProps = {
@@ -101,11 +127,14 @@ export default connect(
         availableDates: selectAvailableDates,
         availableInstructors: selectAvailableInstructorsByDate,
         selectedDate: selectSelectedDate,
-        selectedInstructor: selectSelectedInstructor
+        selectedInstructor: selectSelectedInstructor,
+        selectedLocation: selectSelectedLocation,
+        reserved: selectReserved
     }),
     {
         pickDate,
         pickInstructor,
-        pickLocation
+        pickLocation,
+        reserve
     }
 )(App);

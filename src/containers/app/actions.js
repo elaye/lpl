@@ -1,4 +1,4 @@
-import { DATE_PICK, INSTRUCTOR_PICK, LOCATION_PICK } from './constants'
+import { DATE_PICK, INSTRUCTOR_PICK, LOCATION_PICK, RESERVE } from './constants'
 
 export function pickDate(date) {
     return {
@@ -18,5 +18,12 @@ export function pickLocation(location) {
     return {
         type: LOCATION_PICK,
         payload: location
+    };
+}
+
+export function reserve() {
+    return {
+        type: RESERVE,
+        payload: null
     };
 }
