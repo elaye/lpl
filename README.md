@@ -1,4 +1,4 @@
-[REST API spec](swagger.io) à importer avec [Swagger Editor](http://editor.swagger.io/)
+[REST API spec](swagger.json) à importer avec [Swagger Editor](http://editor.swagger.io/)
 
 ## DB Schema
 
@@ -17,7 +17,7 @@
 | cityId | int |
 | status | enum: [admin, candidate, instructor] |
 
-### Cities
+### Cities table
 
 | Name | Type |
 | ---- | ---- |
@@ -27,7 +27,7 @@
 | lon | float |
 
 
-### TimeSlots
+### TimeSlots table
 
 | Name | Type |
 | ---- | ---- |
@@ -37,7 +37,7 @@
 | cityId | int |
 | instructorId | int |
 
-### BookedTimeSlots
+### BookedTimeSlots table
 
 | Name | Type |
 | ---- | ---- |
