@@ -1,0 +1,11 @@
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.app__step {
+    width: 80%;
+    margin: 50px 0;
+}
