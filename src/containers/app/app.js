@@ -52,14 +52,11 @@ function renderStep2(availableInstructors, selectedInstructor, pickInstructor) {
     );
 }
 
-function renderStep3(selectedLocation, pickLocation) {
+function renderStep3(pickLocation) {
     return (
         <div className="app__step">
         <h2>{"Etape 3: Choisissez un lieu de départ"}</h2>
-        <LocationPicker
-            selectedLocation={selectedLocation}
-            onPickLocation={pickLocation}
-        />
+        <LocationPicker onPickLocation={pickLocation} />
         </div>
     );
 }
@@ -69,14 +66,15 @@ function renderSubmit(submit, reserved, selectedDate, selectedInstructor, select
     return <button onClick={submit}>{"Réserver"}</button>;
 }
 
-function renderSuccess(selectedDate, selectedTime, selectedInstructor) {
+function renderSuccess(selectedDate, selectedTime, selectedLocation, selectedInstructor) {
     return (
         <div>
             <h1>{"Merci de votre réservation!"}</h1>
             <ul>
-                <li>{`Date : ${selectedDate.format('DD/MM/YYYY')}`}</li>
-                <li>{`Heure : ${selectedTime}:00`}</li>
-                <li>{`Moniteur : ${selectedInstructor}`}</li>
+                <li><strong>{"Date : "}</strong>{selectedDate.format('DD/MM/YYYY')}</li>
+                <li><strong>{"Heure : "}</strong>{`${selectedTime}:00`}</li>
+                <li><strong>{"Lieu de départ : "}</strong>{selectedLocation.label}</li>
+                <li><strong>{"Moniteur : "}</strong>{selectedInstructor}</li>
             </ul>
         </div>
     );
@@ -99,14 +97,13 @@ class App extends Component {
           reserve,
           reserved
       } = this.props;
-      console.log(reserved);
-      if (reserved) return renderSuccess(selectedDate, selectedTime, selectedInstructor);
+      if (reserved) return renderSuccess(selectedDate, selectedTime, selectedLocation, selectedInstructor);
       return (
         <div className="app">
             <h1>{"Réserver une heure de conduite"}</h1>
             {renderStep1(availableDates, selectedDate, pickDate, selectedTime, pickTime)}
             {renderStep2(availableInstructors, selectedInstructor, pickInstructor)}
-            {selectedInstructor ? renderStep3(selectedLocation, pickLocation) : null}
+            {selectedInstructor ? renderStep3(pickLocation) : null}
             {renderSubmit(reserve, reserved, selectedDate, selectedInstructor, selectedLocation)}
         </div>);
   }
@@ -116,7 +113,7 @@ App.propTypes = {
     selectedDate: PropTypes.object,
     selectedTime: PropTypes.number.isRequired,
     selectedInstructor: PropTypes.string,
-    selectedLocation: PropTypes.string,
+    selectedLocation: PropTypes.object,
     availableDates: PropTypes.array.isRequired,
     availableInstructors: PropTypes.object,
     pickDate: PropTypes.func.isRequired,

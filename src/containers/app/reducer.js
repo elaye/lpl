@@ -22,10 +22,8 @@ export default function app(state = initialState, action) {
     case INSTRUCTOR_PICK:
         return state.set('selectedInstructor', action.payload);
     case LOCATION_PICK:
-      console.log(action.payload);
         return state.set('selectedLocation', action.payload);
     case RESERVE:
-      console.log('reserve');
         return state.set('reserved', true);
     default:
         return state;

@@ -21,10 +21,10 @@ export function pickInstructor(instructor) {
     };
 }
 
-export function pickLocation(location) {
+export function pickLocation(locationId, label) {
     return {
         type: LOCATION_PICK,
-        payload: location
+        payload: { locationId, label }
     };
 }
 
